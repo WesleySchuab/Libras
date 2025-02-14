@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tradutor VLibras</title>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tradutor VLibras</h1>
+    <p>Digite uma frase e clique no botão para visualizar a tradução em Libras.</p>
+    <input type="text" id="textInput" placeholder="Digite sua frase aqui...">
+    <button onclick="translateToLibras()">Traduzir</button>
+    
+    <div id="vlibras">
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div vw-plugin-container>
+                    <div vw-plugin-toggle></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        new window.VLibras.Widget();
+        
+        function translateToLibras() {
+            let text = document.getElementById("textInput").value;
+            if (text.trim() !== "") {
+                let span = document.createElement("span");
+                span.setAttribute("vlibras", "true");
+                span.innerText = text;
+                document.body.appendChild(span);
+            }
+        }
+    </script>
+</body>
+</html>
